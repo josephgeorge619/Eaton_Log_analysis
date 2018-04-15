@@ -67,8 +67,9 @@ def progress():
 
         # setup toolbar
         sys.stdout.write("[%s]" % ("-" * toolbar_width))
+        sys.stdout.write(' 0%')
         sys.stdout.flush()
-        sys.stdout.write("\b" * (toolbar_width+1)) # return to start of line, after '['
+        sys.stdout.write("\b" * (toolbar_width+4)) # return to start of line, after '['
 
 
 def progress_bar(val, percent, p_no, pointer):
@@ -84,7 +85,7 @@ def progress_bar(val, percent, p_no, pointer):
                         sys.stdout.write("-")
                         sys.stdout.flush()
         sys.stdout.write('] %s%%' % (percent))
-
+        sys.stdout.flush()
 
 
 #Display Help
