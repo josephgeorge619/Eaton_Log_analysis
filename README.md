@@ -15,7 +15,7 @@ Arguments
 
 <h3>Windows:</h3>
 
-**C:\Python2.7\python.exe script_location\ups_analyzer.py --filename filename.csv**
+**C:\Python27\python.exe script_location\ups_analyzer.py --filename filename.csv**
 
 Arguments 
 
