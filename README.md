@@ -1,12 +1,12 @@
 # Eaton_Log_analysis
-Python script to analyze EATON IPM UPS Logs
+<h1>Python script to analyze EATON IPM UPS Logs</h1>
 
 
 Export the logs from EATON IPM Manager in CSV format
 
 Execute the script with logs file name as argument
 
-Linux:
+<h3>Linux:</h3>
 
 ups_analyzer -f filename.csv  
 
@@ -14,7 +14,7 @@ Arguemnts
 
 -f | --filename : Input Logs filename with extention
 
-Windows:
+<h3>Windows:</h3>
 
 C:\Python2.7\python.exe script_location\ups_analyzer.py --filename filename.csv
 
