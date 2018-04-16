@@ -14,7 +14,7 @@ Arguemnts
 
 -f | --filename : Input Logs filename with extention
 
-Windows
+Windows:
 
 C:\Python2.7\python.exe script_location\ups_analyzer.py --filename filename.csv
 
