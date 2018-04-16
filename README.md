@@ -1,4 +1,3 @@
-# Eaton_Log_analysis
 <h1>Python script to analyze EATON IPM UPS Logs</h1>
 
 
@@ -8,7 +7,7 @@ Execute the script with logs file name as argument
 
 <h3>Linux:</h3>
 
-ups_analyzer -f filename.csv  
+**ups_analyzer -f filename.csv  **
 
 Arguemnts 
 
@@ -16,8 +15,18 @@ Arguemnts
 
 <h3>Windows:</h3>
 
-C:\Python2.7\python.exe script_location\ups_analyzer.py --filename filename.csv
+**C:\Python2.7\python.exe script_location\ups_analyzer.py --filename filename.csv**
 
 Arguemnts 
 
 -f | --filename : Input Logs filename with extention
+
+
+<h2>Dependencies</h2>
+
+packages:
+    * tqdm
+
+Installation Procedure
+
+pip install tqdm
