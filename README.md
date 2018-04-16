@@ -30,5 +30,6 @@ packages:
     1. tqdm
 
 Installation Procedure
-
+```
 pip install tqdm
+```
