@@ -13,6 +13,7 @@ import time
 import getopt
 import sys
 import datetime
+from tqdm import tqdm
 from datetime import date
 from datetime import timedelta
 from operator import itemgetter, attrgetter
@@ -22,7 +23,7 @@ last_day=[]
 last_week = []
 last_month = []
 toolbar_width = 50
-
+tqdm.monitor_interval = 0
 ########################################################################################################
 #Function for date generation
 def Gen_Dates():
@@ -61,39 +62,14 @@ def Analyse(date_list):
                 file_writer.write('%-30s ------    Count is:%4s \n' %(i[0],i[1]))
             n += 1
 
-#Progress Bar
-
-def progress():
-
-        # setup toolbar
-        sys.stdout.write("[%s]" % ("-" * toolbar_width))
-        sys.stdout.write(' 0%')
-        sys.stdout.flush()
-        sys.stdout.write("\b" * (toolbar_width+4)) # return to start of line, after '['
-
-
-def progress_bar(val, percent, p_no, pointer):
-
-        sys.stdout.write("\b" * (pointer)) 
-        for i in xrange(p_no):
-                if i < val:
-                        time.sleep(0.1) # do real work here
-                        # update the bar
-                        sys.stdout.write("#")
-                        sys.stdout.flush()
-                else:
-                        sys.stdout.write("-")
-                        sys.stdout.flush()
-        sys.stdout.write('] %s%%' % (percent))
-        sys.stdout.flush()
-
-
 #Display Help
 def Usage(script):
     print "Script Usage:   "+'C:\Python27\python.exe '+"%s --filename \"file name.csv\" \n" %(script)
 ########################################################################################################
 
-progress()
+#TQDM Progress Bar initialization
+probar = tqdm(total=100)
+
 script_loc=os.path.realpath(__file__)
 dir_path = os.path.dirname(os.path.realpath(__file__))
 try:
@@ -115,23 +91,26 @@ try:
 except:
         print " Please check the input filename!! Unable to open file!! \n Program Exiting!!!   Bye"
         exit(0)
+probar.update(5)
 file_name_path=(os.path.splitext(f.name)[0])
 file_writer = open(file_name_path+"_report.doc", 'w')
 
 #initial Processing
 #adding to list so that we can use it mutiple iterations
 data = [row for row in reader]
+probar.update(5)
 #Removing all the messages that does not contain information related to Battery
 for i in data:
     if 'under' in i['Message'] or 'Under' in i['Message'] or 'battery' in i['Message'] or 'Battery' in i['Message']:
         ups_message += [i]
+probar.update(5)
 #Getting Unique UPS Names
 n = 0
 for i in ups_message:
         if i['Node'] not in ups_names:
                 ups_names.insert(n, i['Node'])
                 n += 1
-
+probar.update(5)
 file_writer.write("############################################################\n")
 file_writer.write("#                                                          #\n")
 file_writer.write("#                   Final Analysis report                  #\n")
@@ -140,29 +119,29 @@ file_writer.write("############################################################\
 
 #Generate Dates
 Gen_Dates()
-progress_bar(10, 20, 50, 0)
+probar.update(10)
 
 #Analysis for last day
 file_writer.write("\n+----------------------------------------------------------+\n")
 file_writer.write("|            Yesterday's Report"+str(last_day)+"              |\n")
 file_writer.write("+----------------------------------------------------------+\n")
 Analyse(last_day)
-progress_bar(15, 50, 40, 45)
 
+probar.update(20)
 #Analysis for last week
 file_writer.write("\n+----------------------------------------------------------+\n")
 file_writer.write("|                     Last Week's Report                   |\n")
 file_writer.write("+----------------------------------------------------------+\n")
 Analyse(last_week)
-progress_bar(15, 75, 25, 30)
 
+probar.update(20)
 #Analysis for Last Month
 file_writer.write("\n+----------------------------------------------------------+\n")
 file_writer.write("|                     Last Month's Report                  |\n")
 file_writer.write("+----------------------------------------------------------+\n")
 Analyse(last_month)
-progress_bar(10, 100, 10, 15)
 sys.stdout.write("\n")
-
+probar.update(30)
+probar.close()
 file_writer.close()
-sys.stdout.write("Report file Generated")
+sys.stdout.write("Report file Generated\n")
