@@ -3,13 +3,13 @@
 
 Export the logs from EATON IPM Manager in CSV format
 
-Execute the script with logs file name as argument
+Execute the python script with logs filename as argument
 
 <h3>Linux:</h3>
 
-**ups_analyzer -f filename.csv  **
+**ups_analyzer -f filename.csv**
 
-Arguemnts 
+Arguments 
 
 -f | --filename : Input Logs filename with extention
 
@@ -17,7 +17,7 @@ Arguemnts
 
 **C:\Python2.7\python.exe script_location\ups_analyzer.py --filename filename.csv**
 
-Arguemnts 
+Arguments 
 
 -f | --filename : Input Logs filename with extention
 
