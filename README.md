@@ -25,7 +25,8 @@ Arguments
 <h2>Dependencies</h2>
 
 packages:
-    * tqdm
+
+    1. tqdm
 
 Installation Procedure
 
