@@ -7,6 +7,7 @@
 # | Notes   : This will analyse the UPS logs of last Day, Week & Month   |
 # | Author  : Joseph George <Joseph.Fisat@gmail.com>                     |
 # +----------------------------------------------------------------------+
+
 import csv
 import os
 import time
