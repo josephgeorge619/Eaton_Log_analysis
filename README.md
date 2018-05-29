@@ -1,4 +1,4 @@
-# Python script to analyze EATON IPM UPS Logs
+#  Python script to analyze EATON IPM UPS Logs
 
 
 Export the logs from EATON IPM Manager in CSV format
